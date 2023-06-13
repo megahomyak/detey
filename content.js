@@ -9,18 +9,18 @@ function modifyTextNodes(element) {
 function isVisible(element) {
     let styles = window.getComputedStyle(element);
     let isVisible = styles.display !== 'none' && styles.visibility !== 'hidden' && styles.opacity !== '0';
-    return isVisible
+    return isVisible;
 }
 
-function replace(text, chars, repl) {
-    let regexp = new RegExp(`[${chars}]+(?:(?=[^${chars}])[\\wёа-я])*([^\\wёа-я]|\\s|$)`, "iug");
-    return text.replace(regexp, `${repl}$1`);
+function replace(text, vowels, repl, alphabet) {
+    let regexp = new RegExp(`([${alphabet}])(?:[${vowels}]|((?![${vowels}])[${alphabet}]))([^${alphabet}]|$)`, "iug");
+    return text.replace(regexp, `$1$2${repl}$3`);
 }
 
 function modifyText(text) {
-    text = replace(text, "аеиоуыэюяёь", "ей")
-    text = replace(text, "aeiouy", "ey")
-    return text
+    text = replace(text, "аеиоуыэюяёь", "ей", "ёа-я");
+    text = replace(text, "aeiouy", "ey", "\\w");
+    return text;
 }
 
 function processElement(element) {
