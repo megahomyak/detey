@@ -1,4 +1,4 @@
-function modifyTextNodes(element) {
+function deteyifyTextNodes(element) {
     for (let node of element.childNodes) {
         if (node.nodeType === Node.TEXT_NODE) {
             node.nodeValue = modifyText(node.nodeValue);
@@ -12,28 +12,33 @@ function isVisible(element) {
     return isVisible;
 }
 
-function replace(text, vowels, repl, alphabet) {
+function deteyifyText(text, vowels, repl, alphabet) {
     let regexp = new RegExp(`(?!${repl})([${alphabet}])(?:[${vowels}]|((?![${vowels}])[${alphabet}]))([^${alphabet}]|$)`, "iug");
     return text.replace(regexp, `$1$2${repl}$3`);
 }
 
 function modifyText(text) {
-    text = replace(text, "аеиоуыэюяёь", "ей", "ёа-я");
-    text = replace(text, "aeiouy", "ey", "\\w");
+    text = deteyifyText(text, "аеиоуыэюяёь", "ей", "ёа-я");
+    text = deteyifyText(text, "aeiouy", "ey", "\\w");
     return text;
 }
 
-function processElement(element) {
+function deteyifyElement(element) {
     if (isVisible(element)) {
-        modifyTextNodes(element);
+        deteyifyTextNodes(element);
         for (let inner of element.children) {
-            processElement(inner);
+            deteyifyElement(inner);
         }
     }
 }
 
+let deteyImagePath = browser.runtime.getURL("DETEY.jpg");
 browser.runtime.onMessage.addListener((message) => {
-    if (message.command === "processElement") {
-        processElement(document.body);
+    if (message === "deteyify") {
+        deteyifyElement(document.body);
+        const images = document.querySelectorAll("img");
+        for (let image of images) {
+            image.src = deteyImagePath;
+        }
     }
 });
