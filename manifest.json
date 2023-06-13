@@ -1,12 +1,14 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "version": "1.0.0",
     "name": "ДЕТЕЙ",
-    "browser_action": {
-        "default_icon": "DETEY.jpg"
+    "action": {
+        "default_icon": {
+            "128": "DETEY_128_128.jpg"
+        }
     },
     "background": {
-        "scripts": ["background.js"]
+        "service_worker": "background.js"
     },
     "content_scripts": [
         {
@@ -14,8 +16,16 @@
             "js": ["content.js"]
         }
     ],
-    "permissions": [
-        "tabs",
+    "host_permissions": [
         "<all_urls>"
+    ],
+    "permissions": [
+        "activeTab"
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["DETEY.jpg"],
+            "matches": ["<all_urls>"]
+        }
     ]
 }
