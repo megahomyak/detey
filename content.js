@@ -13,7 +13,7 @@ function isVisible(element) {
 }
 
 function replace(text, vowels, repl, alphabet) {
-    let regexp = new RegExp(`([${alphabet}])(?:[${vowels}]|((?![${vowels}])[${alphabet}]))([^${alphabet}]|$)`, "iug");
+    let regexp = new RegExp(`(?!${repl})([${alphabet}])(?:[${vowels}]|((?![${vowels}])[${alphabet}]))([^${alphabet}]|$)`, "iug");
     return text.replace(regexp, `$1$2${repl}$3`);
 }
 
