@@ -32,17 +32,8 @@ function processElement(element) {
     }
 }
 
-const observer = new MutationObserver(function(mutationsList, _observer) {
-    for (let mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-            for (let node of mutation.addedNodes) {
-                if (node.nodeType === Node.ELEMENT_NODE) {
-                    processElement(node);
-                }
-            }
-        }
+browser.runtime.onMessage.addListener((message) => {
+    if (message.command === "processElement") {
+        processElement(document.body);
     }
 });
-
-observer.observe(document.body, { childList: true, subtree: true });
-processElement(document.body);
