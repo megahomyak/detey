@@ -12,15 +12,15 @@ function isVisible(element) {
     return isVisible;
 }
 
-function deteyifyText(text, vowels, repl, any_letter) {
-    let regexp = new RegExp(`(?!${repl})(${any_letter})(?:[${vowels}]|((?![${vowels}])${any_letter}))((?!${any_letter})|$)`, "iug");
+function deteyifyText(text, vowels, repl, alphabet) {
+    let regexp = new RegExp(`(?!${repl})([${alphabet}])(?:[${vowels}]|((?![${vowels}])[${alphabet}]))([^${alphabet}]|$)`, "iug");
     console.log(regexp);
     return text.replace(regexp, `$1$2${repl}$3`);
 }
 
 function modifyText(text) {
-    text = deteyifyText(text, "аеиоуыэюяёь", "ей", "[ёа-я]");
-    text = deteyifyText(text, "aeiouy", "ey", "(?!\\d)\\w");
+    text = deteyifyText(text, "аеиоуыэюяёь", "ей", "ёа-я");
+    text = deteyifyText(text, "aeiouy", "ey", "a-z");
     return text;
 }
 
