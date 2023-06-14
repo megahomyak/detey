@@ -14,7 +14,6 @@ function isVisible(element) {
 
 function deteyifyText(text, vowels, repl, alphabet) {
     let regexp = new RegExp(`(?!${repl})([${alphabet}])(?:[${vowels}]|((?![${vowels}])[${alphabet}]))([^${alphabet}]|$)`, "iug");
-    console.log(regexp);
     return text.replace(regexp, `$1$2${repl}$3`);
 }
 
