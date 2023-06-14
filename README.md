@@ -1,4 +1,4 @@
-This is a Russian meme, so I don't think that translating this README to English is worth it, sorry.
+This is a very niche Russian meme, so I don't think that translating this README to English is worth it, sorry.
 
 # ДЕТЕЙ
 
