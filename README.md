@@ -27,7 +27,7 @@ This is a very niche Russian meme, so I don't think that translating this README
 
 * Загрузить архив с исходниками *для Firefox* из [последнего релиза](https://github.com/megahomyak/detey/releases/latest)
 * Открыть [about:debugging -> "Этот Firefox" ("This Firefox")](about:debugging#/runtime/this-firefox)
-* Раскрыть секцию "Временные расширения" (самая первая), если ещё не раскрыта
+* Раскрыть секцию "Временные расширения" ("Temporary Extensions") (самая первая), если ещё не раскрыта
 * Нажать на "Загрузить временное дополнение..." ("Load temporary Add-on")
 * Выбрать загруженный архив
 
