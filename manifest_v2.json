@@ -3,7 +3,7 @@
     "version": "1.0.1",
     "name": "ДЕТЕЙ",
     "browser_action": {
-        "default_icon": "../DETEY.jpg"
+        "default_icon": "../DETEY_128_128.png"
     },
     "background": {
         "scripts": ["../background.js"]

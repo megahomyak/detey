@@ -5,9 +5,9 @@ chrome.zip: DETEY.jpg DETEY_128_128.png background.js content.js manifest_v3.jso
 	zip chrome.zip DETEY.jpg DETEY_128_128.png background.js content.js manifest.json -FS
 	rm manifest.json
 
-firefox.zip: DETEY.jpg background.js content.js manifest_v2.json
+firefox.zip: DETEY.jpg DETEY_128_128.png background.js content.js manifest_v2.json
 	ln manifest_v2.json manifest.json
-	zip firefox.zip DETEY.jpg background.js content.js manifest.json -FS
+	zip firefox.zip DETEY.jpg DETEY_128_128.png background.js content.js manifest.json -FS
 	rm manifest.json
 
 clean:
