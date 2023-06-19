@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "version": "2.0.0",
+    "version": "2",
     "name": "ДЕТЕЙ",
     "browser_action": {
         "default_icon": "DETEY_128_128.png"
