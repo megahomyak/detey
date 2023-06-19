@@ -12,15 +12,28 @@ function isVisible(element) {
     return isVisible;
 }
 
-function deteyifyText(text, vowels, repl, alphabet) {
-    let regexp = new RegExp(`(?!${repl})([${alphabet}])(?:[${vowels}]|((?![${vowels}])[${alphabet}]))([^${alphabet}]|$)`, "iug");
-    return text.replace(regexp, `$1$2${repl}$3`);
+function makeReplacer(vowels, repl, alphabet, replEnd) {
+    let regexp = new RegExp(
+        `(?!${repl})` // Excluding words that already end with "ey"
+        + `(?:`
+        + `(?<firstLetter1>[${alphabet}])[${vowels}]` // Either a letter and a vowel
+        + `|` // or
+        + `[${vowels}]${replEnd}` // an ending that looks similar to "ey"
+        + `|` // or
+        + `(?<firstLetter2>[${alphabet}])(?<consonant>(?![${vowels}])[${alphabet}])` // a letter an a consonant (which has to be saved, so it's grouped)
+        + `)` // The end of the word ending's letters
+        + `(?<after>[^${alphabet}]|$)`, // The end of the word (something after the word)
+        "iug" // case-Insensitive, matching Unicode, Global (don't return after first match)
+    );
+    console.log(regexp);
+    return (text) => text.replace(regexp, `$<firstLetter1>$<firstLetter2>$<consonant>${repl}$<after>`);
 }
 
+let ruReplacer = makeReplacer("аеиоуыэюяёь", "ей", "ёа-я", "й");
+let enReplacer = makeReplacer("aeiouy", "ey", "a-z", "y");
+
 function modifyText(text) {
-    text = deteyifyText(text, "аеиоуыэюяёь", "ей", "ёа-я");
-    text = deteyifyText(text, "aeiouy", "ey", "a-z");
-    return text;
+    return ruReplacer(enReplacer(text));
 }
 
 function deteyifyElement(element) {
