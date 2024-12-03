@@ -27,7 +27,7 @@ This is a very niche Russian meme, so I don't think that translating this README
 * Нажать на "Загрузить распакованное расширение" ("Load unpacked") (кнопка находится в меню, которое открылось после нажатия на переключатель)
 * Выбрать папку с распакованными файлами
 
-### Firefoxey
+### Firefoxey (длей Андроидей тожей)
 
 * Поставить отсюда: [DETEY](https://addons.mozilla.org/en-US/firefox/addon/detey/)
 
