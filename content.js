@@ -25,7 +25,6 @@ function makeReplacer(vowels, repl, alphabet, replEnd, caseInsensitive) {
         + `(?<after>[^${alphabet}]|$)`, // The end of the word (something after the word)
         caseInsensitive ? "iug" : "ug" // case-Insensitive, matching Unicode, Global (don't return after first match)
     );
-    console.log(regexp);
     return (text) => text.replace(regexp, `$<firstLetter1>$<firstLetter2>$<consonant>${repl}$<after>`);
 }
 
